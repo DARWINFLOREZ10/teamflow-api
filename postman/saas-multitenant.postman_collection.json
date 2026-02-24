@@ -1,0 +1,82 @@
+{
+  "info": {
+    "name": "SaaS MultiTenant Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register Tenant",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/auth/register-tenant",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "auth", "register-tenant"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Demo Admin\",\n  \"email\": \"admin@demo.com\",\n  \"password\": \"Admin123!\",\n  \"tenantName\": \"Demo Inc\",\n  \"tenantSlug\": \"demo-inc\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "auth", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@demo.com\",\n  \"password\": \"Admin123!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "List Projects",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "x-tenant-id", "value": "{{tenantId}}" }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/projects",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "projects"]
+        }
+      }
+    },
+    {
+      "name": "Get Role Permissions",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{accessToken}}" },
+          { "key": "x-tenant-id", "value": "{{tenantId}}" }
+        ],
+        "url": {
+          "raw": "http://localhost:4000/api/admin/permissions",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["api", "admin", "permissions"]
+        }
+      }
+    }
+  ]
+}
