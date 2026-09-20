@@ -4,7 +4,7 @@ A multi-tenant SaaS backend for team and task management — think a lightweight
 
 ## Overview
 
-I built this project to demonstrate a production-ready REST API with features you'd expect in a real SaaS product: per-company data isolation, JWT authentication with token rotation, dynamic role-based access control, and Redis caching. Everything runs with a single Docker command.
+I built this portfolio project to explore a REST API with per-company data isolation, JWT authentication with token rotation, dynamic role-based access control, and Redis caching. It is a local demonstration, with no production customers or measured production scale.
 
 ## Architecture
 
@@ -18,7 +18,7 @@ flowchart LR
 
 A few key decisions I made here:
 
-- **Multi-tenant isolation** — every business entity carries a `tenantId`, so companies never see each other's data, enforced at the query level.
+- **Multi-tenant isolation** — business entities carry a `tenantId`, and query filters use it to scope access. Broader cross-tenant testing is still needed before claiming complete isolation.
 - **Session cache** — refresh sessions are stored and validated in Redis, not just the database, for fast revocation.
 - **Query cache** — project and task list responses are cached in Redis with prefix-based invalidation on writes.
 
